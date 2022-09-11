@@ -1,0 +1,1 @@
+**NOTA:** No se ha podido subir el archivo **frozen_inference_graph.bin** necesario para la inferencia porque excede el límite de tamaño. Puede descargarse en ![este enlace](https://158.49.97.150/owncloud/index.php/s/k8k9ou1LbPeVZgR)
