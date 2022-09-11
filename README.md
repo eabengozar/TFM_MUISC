@@ -29,4 +29,13 @@ anterior con todos los argumentos necesarios.
   - **export_inference.sh:** Este script de shell se encarga de la parametrización necesaria para export_inference_graph.py, herramienta de Object Detection API para preparar el modelo entrenado para poder utilizarlo en inferencias.
 
 - 04_Optimizar:
-  - eug_mo.sh: Script de shell que parametriza la llamada a mo_tf.py, herramienta para optimizar el modelo de inferencia de TensorFlow para que pueda utilizarse en el entorno Openvino.
+  - **eug_mo.sh:** Script de shell que parametriza la llamada a mo_tf.py, herramienta para optimizar el modelo de inferencia de TensorFlow para que pueda utilizarse en el entorno Openvino.
+
+## 04_Estimación_de_la_pose:
+- **01_Estimacion_poses_test_rgchromaticy.py:** Estima la pose de la imagen base en el conjunto de Test a partir de la imagen y la máscara. Genera un archivo con todas las poses.
+- **02_comparativa_poses.py:** Compara las poses generadas con el dataset con las estimadas en el paso anterior, guarda los errores en un archivo y dibuja un gráfico de barras con ellos.
+
+## 05_Integración_del_sistema_de_visión:
+- catkin_tfm_MUISC: Directorio catkin de ROS con los paquetes de los dos nodos necesarios:
+  - **ros_openvino2021:** Nodo para la inferencia Openvino modificado para que uno de los tópics de salida sea la máscara resultado de la inferencia.
+  - **estima_pose:** Nodo que estima la pose a partir de los topics de la imagen original y la máscara.
