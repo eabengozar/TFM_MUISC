@@ -24,3 +24,9 @@ anterior con todos los argumentos necesarios.
   - **train_legacy.sh:** Script de Shell que lanza el entrenamiento mediante Object Detection API con toda la parametrización necesaria.
   - **eval_legacy.sh:** Script de Shell para la validación a través de Object Detection API. Es necesario lanzar este Script junto al de entrenamiento, para que la evaluación se haga durante todos los puntos de control del entrenamiento. Para que no existan conflictos con el uso de la GPU se ha modificado la llamada al script de evaluación para que se ejecute en la CPU.
   - **test_legacy.sh:** Se trata de un script de evaluación como el anterior, pero modificado para que cargue un conjunto de Test y evalúe el rendimiento del modelo. También necesita el archivo de configuración modificado a partir del descrito en el Anexo A, model_tfm_resnet_test.config.
+
+- 03_Exportar_Inferencia:
+  - **export_inference.sh:** Este script de shell se encarga de la parametrización necesaria para export_inference_graph.py, herramienta de Object Detection API para preparar el modelo entrenado para poder utilizarlo en inferencias.
+
+- 04_Optimizar:
+  - eug_mo.sh: Script de shell que parametriza la llamada a mo_tf.py, herramienta para optimizar el modelo de inferencia de TensorFlow para que pueda utilizarse en el entorno Openvino.
