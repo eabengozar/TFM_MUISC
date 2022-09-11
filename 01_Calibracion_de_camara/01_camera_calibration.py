@@ -17,7 +17,6 @@ objp[:,:2] = np.mgrid[0:11,0:7].T.reshape(-1,2)*20 #cuadrados de 20mm PONIENDO *
 objpoints = [] # puntos 3d en el mundo real (mm)
 imgpoints = [] # puntos 2d en el plano de la imagen (px)
 
-
 images = glob.glob(dir_images + '*.jpg')
 for fname in images:
 	img = cv.imread(fname)
