@@ -1,0 +1,49 @@
+<!-- 
+ * This file is part of the ros_openvino package (https://github.com/gbr1/ros_openvino or http://gbr1.github.io).
+ * Copyright (c) 2019 Giovanni di Dio Bruno y Carlos.
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<launch>
+    <node pkg="image_publisher" type="image_publisher" name="image_publisher"
+        args="$(find ros_openvino)/images/imagenes_reales_test/640x480/test/04.jpg" >
+	<remap from="/image_publisher/image_raw" to="/image_fotos" />
+    <param name="flip_horizontal" value="false" />
+    <param name="flip_vertical" value="false" />
+    <param name="frame_id" value="my_camera" />
+    <param name="publish_rate" value="1" />
+    <!-- <param name="camera_info_url" value="file:///$(env HOME)/.ros/camera_info/camera.yaml" />    relative to ~/.ros/ -->
+  </node>
+
+    <node name="object_detection" pkg="ros_openvino" type="object_detection" output="screen">
+        <remap from="/object_detection/input_image" to="/image_fotos" />
+        <param name="threshold"         value="0.5" />
+        <param name="target"            value="CPU" />
+        <param name="net_type"          value="MRCNN" />
+        <param name="model_network"     value="$(find ros_openvino)/models/FP16/tfm_MUISC_02/frozen_inference_graph.xml" />
+        <param name="model_weights"     value="$(find ros_openvino)/models/FP16/tfm_MUISC_02/frozen_inference_graph.bin" />
+        <param name="model_labels"      value="$(find ros_openvino)/models/FP16/tfm_MUISC_02/frozen_inference_graph.labels" />
+        <param name="model_colors"      value="$(find ros_openvino)/models/FP16/tfm_MUISC_02/frozen_inference_graph.colors" />
+        <param name="output_as_image"   value="true" />
+        <param name="output_as_list"    value="true" />
+        <param name="depth_analysis"    value="false" />
+    </node>
+
+    <!--
+    <node name="analysis_viewer" pkg="image_view" type="image_view">
+        <remap from="/image"             to="/object_detection/output_image" />
+    </node>
+    -->
+</launch>

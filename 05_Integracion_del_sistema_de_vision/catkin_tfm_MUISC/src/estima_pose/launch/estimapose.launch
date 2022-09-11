@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="estima_pose" type="01_Estimacion_poses.py" name="estima_pose" output="screen"/>
+</launch>
