@@ -18,3 +18,9 @@ creadas.
   - **create_coco_tf_record_eug.py:** Script de Object Detection API en el que tan solo se han especificado el número de imágenes de los distintos conjuntos (en las líneas 494, 504 y 514).
   - **eug_coco2tfrobot.sh:** Script de Shell para la ejecución más cómoda del script
 anterior con todos los argumentos necesarios.
+
+- 02_Entrenar:
+  - **model_tfm_resnet.config:** Es el archivo de configuración empleado para el en- trenamiento, el que se detalla en el Anexo A
+  - **train_legacy.sh:** Script de Shell que lanza el entrenamiento mediante Object Detection API con toda la parametrización necesaria.
+  - **eval_legacy.sh:** Script de Shell para la validación a través de Object Detection API. Es necesario lanzar este Script junto al de entrenamiento, para que la evaluación se haga durante todos los puntos de control del entrenamiento. Para que no existan conflictos con el uso de la GPU se ha modificado la llamada al script de evaluación para que se ejecute en la CPU.
+  - **test_legacy.sh:** Se trata de un script de evaluación como el anterior, pero modificado para que cargue un conjunto de Test y evalúe el rendimiento del modelo. También necesita el archivo de configuración modificado a partir del descrito en el Anexo A, model_tfm_resnet_test.config.
